@@ -1,4 +1,5 @@
-var x = "Emamex98"
+var x = "if"
+
 
 console.log(check(x));
 
@@ -6,6 +7,10 @@ function check(input) {
 
   var currentState = 0;
   var matchPalabraReservada;
+
+  var reservadas = ["if","else","then","begin","end","var","program"];
+  var sumaAscii = 0;
+  var sumaAsciiRes = 0;
 
   // Revisar primer caracter
   switch(true) {
@@ -50,6 +55,27 @@ function check(input) {
 
       }
 
+    }
+
+    // Sumar los valores ASCII de la palabra
+    for(var i=0; i<input.length; i++){
+      sumaAscii += input[i].charCodeAt(0);
+    }
+
+    // Revisar si la suma de codigos ASCII coincide con los de una palabra reservada
+    for(var i=0; i<input.length; i++){
+      for(var j=0; j<input.length; j++){
+        sumaAsciiRes+= reservadas[i].charCodeAt(j);
+      }
+
+      if(sumaAscii == sumaAsciiRes){
+        if(input === reservadas[i]){
+          currentState = 2;
+          break;
+        }
+      }
+
+      sumaAsciiRes = 0;
     }
 
     // Regresar verdadero si se llega a un estado final
