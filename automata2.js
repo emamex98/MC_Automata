@@ -1,4 +1,4 @@
-var x = "789A"
+var x = "0xFA07B"
 console.log(automata2(x));
 
 function automata2(input) {
@@ -79,6 +79,9 @@ function automata2(input) {
           switch(true){
             case(input[i].charCodeAt(0) >= 48 && input[i].charCodeAt(0) <= 57):
               currentState = 5;
+              break;
+            case (input[i].charCodeAt(0) == 46):
+              currentState = 8;
               break;
             default:
               currentState = 1;

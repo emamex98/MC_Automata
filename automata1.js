@@ -1,5 +1,5 @@
-var x = "0"
-console.log(automata2(x));
+var x = "Emanuel_98"
+console.log(automata1(x));
 
 function automata1(input) {
 
@@ -18,7 +18,7 @@ function automata1(input) {
         currentState = 2;
         break;
       case (input[0].charCodeAt(0) == 95):
-        currentState = 1;
+        currentState = 3;
         break;
       case (input[0].charCodeAt(0) > 90 && input[0].charCodeAt(0) < 97):
         currentState = 2;
@@ -63,8 +63,8 @@ function automata1(input) {
     }
 
     // Revisar si la suma de codigos ASCII coincide con los de una palabra reservada
-    for(var i=0; i<input.length; i++){
-      for(var j=0; j<input.length; j++){
+    for(var i=0; i<reservadas.length; i++){
+      for(var j=0; j<reservadas[i].length; j++){
         sumaAsciiRes+= reservadas[i].charCodeAt(j);
       }
 
@@ -82,9 +82,11 @@ function automata1(input) {
   }
 
   // Regresar verdadero si se llega a un estado final
-  if(currentState == 1)
-  return true;
-  else
-  return false;
+  if(currentState == 1){
+    return "Identificador";
+  }
+  else{
+    return "Error";
+  }
 
 }
