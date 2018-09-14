@@ -1,9 +1,7 @@
-var x = "if"
+var x = "0"
+console.log(automata2(x));
 
-
-console.log(check(x));
-
-function check(input) {
+function automata1(input) {
 
   var currentState = 0;
   var matchPalabraReservada;
@@ -12,19 +10,21 @@ function check(input) {
   var sumaAscii = 0;
   var sumaAsciiRes = 0;
 
-  // Revisar primer caracter
-  switch(true) {
-    case (input[0].charCodeAt(0) < 65 || input[0].charCodeAt(0) > 122):
-      currentState = 2;
-      break;
-    case (input[0].charCodeAt(0) == 95):
-      currentState = 1;
-      break;
-    case (input[0].charCodeAt(0) > 90 && input[0].charCodeAt(0) < 97):
-      currentState = 2;
-      break;
-    default:
-      currentState = 1;
+  if(input.length > 0){
+
+    // Revisar primer caracter
+    switch(true) {
+      case (input[0].charCodeAt(0) < 65 || input[0].charCodeAt(0) > 122):
+        currentState = 2;
+        break;
+      case (input[0].charCodeAt(0) == 95):
+        currentState = 1;
+        break;
+      case (input[0].charCodeAt(0) > 90 && input[0].charCodeAt(0) < 97):
+        currentState = 2;
+        break;
+      default:
+        currentState = 1;
     }
 
     // Si primer caracter es valido, revisar el resto de los caracteres
@@ -43,15 +43,15 @@ function check(input) {
             currentState = 2;
             break;
           case (input[i].charCodeAt(0) > 57 && input[i].charCodeAt(0) < 65):
-            currentState = 2;
+          currentState = 2;
             break;
-          default:
-            currentState = 1;
-          }
+            default:
+          currentState = 1;
+        }
 
-          if(currentState != 1){
-            break;
-          }
+        if(currentState != 1){
+          break;
+        }
 
       }
 
@@ -68,6 +68,7 @@ function check(input) {
         sumaAsciiRes+= reservadas[i].charCodeAt(j);
       }
 
+      // Si suma coincide, checar que valor no sea el mismo
       if(sumaAscii == sumaAsciiRes){
         if(input === reservadas[i]){
           currentState = 2;
@@ -78,10 +79,12 @@ function check(input) {
       sumaAsciiRes = 0;
     }
 
-    // Regresar verdadero si se llega a un estado final
-    if(currentState == 1)
-      return true;
-    else
-      return false;
+  }
+
+  // Regresar verdadero si se llega a un estado final
+  if(currentState == 1)
+  return true;
+  else
+  return false;
 
 }
