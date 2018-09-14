@@ -171,6 +171,7 @@ function automata2(input) {
 
   }
 
+  // Regresar verdadero si se llega a un estado final
   switch (currentState){
     case 2:
       return "Número Natural";
